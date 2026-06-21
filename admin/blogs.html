@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Manage Blogs | Code With Piyush Studio</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <aside class="sidebar" id="sidebar">
+    <a href="../index.html" class="admin-logo">
+      <span>CWP</span>
+      <div>
+        Code With <strong>Piyush</strong>
+        <small>Admin Panel</small>
+      </div>
+    </a>
+
+    <nav class="admin-menu">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="blogs.html" class="active">Blogs</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="settings.html">Settings</a>
+      <a href="../index.html">View Website</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+
+    <header class="admin-topbar">
+      <button class="sidebar-toggle" id="sidebarToggle">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div>
+        <h1>Manage Blogs</h1>
+        <p>Add and manage website blog articles.</p>
+      </div>
+
+      <button class="logout-btn" id="logoutBtn">Logout</button>
+    </header>
+
+    <section class="admin-grid">
+
+      <div class="admin-panel-card">
+        <h2>Add New Blog</h2>
+
+        <form class="admin-form" id="blogForm">
+
+          <div class="form-group">
+            <label>Blog Title</label>
+            <input type="text" id="blogTitle" placeholder="Example: Basic SEO Setup" required>
+          </div>
+
+          <div class="form-group">
+            <label>Blog Category</label>
+            <input type="text" id="blogCategory" placeholder="Example: SEO" required>
+          </div>
+
+          <div class="form-group">
+            <label>Read Time</label>
+            <input type="text" id="blogReadTime" placeholder="Example: 5 min read">
+          </div>
+
+          <div class="form-group">
+            <label>Blog Image URL</label>
+            <input type="text" id="blogImage" placeholder="https://...">
+          </div>
+
+          <div class="form-group">
+            <label>Short Description</label>
+            <textarea id="blogDescription" rows="5" placeholder="Write short blog description..." required></textarea>
+          </div>
+
+          <button type="submit" class="admin-btn">Add Blog</button>
+          <p class="login-message" id="blogMessage"></p>
+        </form>
+      </div>
+
+      <div class="admin-panel-card">
+        <h2>Blog Preview</h2>
+
+        <div class="admin-list" id="blogsList">
+
+          <div class="admin-item">
+            <div>
+              <h3>Basic SEO Setup Every New Website Should Have</h3>
+              <p>Learn meta title, description, sitemap and Google indexing basics.</p>
+              <small>SEO · 5 min read</small>
+            </div>
+            <button>Delete</button>
+          </div>
+
+          <div class="admin-item">
+            <div>
+              <h3>Why Mobile Responsive Design Is Important</h3>
+              <p>Most users browse websites on mobile, so websites must fit every screen.</p>
+              <small>Responsive Design · 4 min read</small>
+            </div>
+            <button>Delete</button>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
