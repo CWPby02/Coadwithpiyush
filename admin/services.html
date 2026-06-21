@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Manage Services | Code With Piyush Studio</title>
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <aside class="sidebar" id="sidebar">
+    <a href="../index.html" class="admin-logo">
+      <span>CWP</span>
+      <div>
+        Code With <strong>Piyush</strong>
+        <small>Admin Panel</small>
+      </div>
+    </a>
+
+    <nav class="admin-menu">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="settings.html">Settings</a>
+      <a href="../index.html">View Website</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+
+    <header class="admin-topbar">
+      <button class="sidebar-toggle" id="sidebarToggle">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div>
+        <h1>Manage Services</h1>
+        <p>Add, edit and delete website services.</p>
+      </div>
+
+      <button class="logout-btn" id="logoutBtn">Logout</button>
+    </header>
+
+    <section class="admin-grid">
+
+      <div class="admin-panel-card">
+        <h2>Add New Service</h2>
+
+        <form class="admin-form" id="serviceForm">
+          <div class="form-group">
+            <label>Service Title</label>
+            <input type="text" id="serviceTitle" placeholder="Example: Website Design" required>
+          </div>
+
+          <div class="form-group">
+            <label>Service Category</label>
+            <input type="text" id="serviceCategory" placeholder="Example: Web Design" required>
+          </div>
+
+          <div class="form-group">
+            <label>Service Description</label>
+            <textarea id="serviceDescription" rows="5" placeholder="Write service description..." required></textarea>
+          </div>
+
+          <button type="submit" class="admin-btn">Add Service</button>
+          <p class="login-message" id="serviceMessage"></p>
+        </form>
+      </div>
+
+      <div class="admin-panel-card">
+        <h2>Services Preview</h2>
+
+        <div class="admin-list" id="servicesList">
+          <div class="admin-item">
+            <div>
+              <h3>Website Design</h3>
+              <p>Modern responsive website layouts for businesses.</p>
+              <small>Web Design</small>
+            </div>
+            <button>Delete</button>
+          </div>
+
+          <div class="admin-item">
+            <div>
+              <h3>Landing Page</h3>
+              <p>High-converting landing pages for services.</p>
+              <small>Marketing</small>
+            </div>
+            <button>Delete</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
