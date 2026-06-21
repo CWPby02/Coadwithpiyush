@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Blog | Code With Piyush Studio</title>
+  <meta name="description" content="Read web design, SEO and frontend development articles from Code With Piyush Studio." />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<header class="header">
+  <nav class="navbar container">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">CWP</span>
+      <span class="logo-text">Code With <strong>Piyush</strong><small>Studio</small></span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="sun-icon">☀</span><span class="moon-icon">◐</span>
+      </button>
+      <a href="contact.html" class="btn btn-primary">Let’s Talk</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- Blog Hero -->
+  <section class="about-hero section">
+    <div class="container about-hero-grid">
+      <div>
+        <span class="section-badge">Our Blog</span>
+        <h1>Learn Web Design, SEO And Frontend Development</h1>
+        <p>
+          Practical articles for beginners, creators and businesses who want to
+          understand websites, design, SEO and online growth.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#articles" class="btn btn-primary">Read Articles</a>
+          <a href="contact.html" class="btn btn-outline">Start Project</a>
+        </div>
+      </div>
+
+      <div class="about-card">
+        <h3>Topics We Cover</h3>
+        <div class="about-list">
+          <span>HTML & CSS Basics</span>
+          <span>Frontend Development</span>
+          <span>Website SEO</span>
+          <span>Responsive Design</span>
+          <span>Freelancing & Clients</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Article -->
+  <section class="featured-article section">
+    <div class="container">
+      <div class="featured-blog-card">
+        <div class="featured-blog-thumb"></div>
+
+        <div class="featured-blog-content">
+          <span class="section-badge">Featured Article</span>
+          <h2>How A Professional Website Helps A Business Grow Online</h2>
+          <p>
+            A professional website builds trust, shows your services clearly,
+            improves your online presence and helps customers contact you easily.
+          </p>
+
+          <div class="article-meta">
+            <span>Web Design</span>
+            <span>5 min read</span>
+            <span>2026</span>
+          </div>
+
+          <a href="#" class="btn btn-primary">Read Article</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Articles Grid -->
+  <section class="blog-preview section" id="articles">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-badge">Latest Posts</span>
+        <h2>Latest Web Development Articles</h2>
+        <p>
+          These are demo blog posts for now. Later this section will be managed
+          from the admin dashboard.
+        </p>
+      </div>
+
+      <div class="blog-grid">
+        <article class="blog-card">
+          <div class="blog-thumb"></div>
+          <div class="blog-content">
+            <span>SEO</span>
+            <h3>Basic SEO Setup Every New Website Should Have</h3>
+            <p>Learn meta title, description, sitemap, robots file and Google indexing basics.</p>
+            <a href="#">Read Article</a>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-thumb"></div>
+          <div class="blog-content">
+            <span>Responsive Design</span>
+            <h3>Why Mobile Responsive Design Is Important</h3>
+            <p>Most users browse websites on mobile, so your website must fit every screen.</p>
+            <a href="#">Read Article</a>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-thumb"></div>
+          <div class="blog-content">
+            <span>Frontend</span>
+            <h3>HTML, CSS And JavaScript: What Beginners Should Learn First</h3>
+            <p>A simple learning path for beginners who want to start frontend development.</p>
+            <a href="#">Read Article</a>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-thumb"></div>
+          <div class="blog-content">
+            <span>Freelancing</span>
+            <h3>How To Get Your First Website Client As A Beginner</h3>
+            <p>Start with local businesses, simple websites and a strong portfolio.</p>
+            <a href="#">Read Article</a>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-thumb"></div>
+          <div class="blog-content">
+            <span>Web Design</span>
+            <h3>What Makes A Website Look Professional?</h3>
+            <p>Spacing, typography, colors, speed and clear content make a website professional.</p>
+            <a href="#">Read Article</a>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-thumb"></div>
+          <div class="blog-content">
+            <span>Hosting</span>
+            <h3>GitHub Pages vs Netlify: Which Is Better For Beginners?</h3>
+            <p>Both are free options for hosting static websites, but each has different benefits.</p>
+            <a href="#">Read Article</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter / CTA -->
+  <section class="contact-cta section">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-badge">Need Help?</span>
+        <h2>Want A Website Like This?</h2>
+        <p>
+          Tell us your project idea and we’ll help you plan a professional,
+          responsive and SEO-friendly website.
+        </p>
+
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-primary">Get Free Quote</a>
+          <a href="services.html" class="btn btn-outline">View Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">CWP</span>
+        <span class="logo-text">Code With <strong>Piyush</strong><small>Studio</small></span>
+      </a>
+      <p>Turning ideas into professional websites with clean design, fast performance and SEO-friendly structure.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="blog.html">Blog</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="services.html">Website Design</a>
+      <a href="services.html">Landing Pages</a>
+      <a href="services.html">SEO Setup</a>
+      <a href="services.html">Admin Dashboard</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="contact.html">Contact Page</a>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+      <a href="#">GitHub</a>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© 2026 Code With Piyush Studio. All rights reserved.</p>
+    <p>Designed & Developed by Piyush Kumar</p>
+  </div>
+</footer>
+
+<script src="js/theme.js"></script>
+</body>
+</html>
