@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Manage Testimonials | Code With Piyush Studio</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <aside class="sidebar" id="sidebar">
+
+    <a href="../index.html" class="admin-logo">
+      <span>CWP</span>
+      <div>
+        Code With <strong>Piyush</strong>
+        <small>Admin Panel</small>
+      </div>
+    </a>
+
+    <nav class="admin-menu">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="testimonials.html" class="active">Testimonials</a>
+      <a href="settings.html">Settings</a>
+      <a href="../index.html">View Website</a>
+    </nav>
+
+  </aside>
+
+  <main class="admin-main">
+
+    <header class="admin-topbar">
+
+      <button class="sidebar-toggle" id="sidebarToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div>
+        <h1>Manage Testimonials</h1>
+        <p>Add and manage client reviews.</p>
+      </div>
+
+      <button class="logout-btn" id="logoutBtn">
+        Logout
+      </button>
+
+    </header>
+
+    <section class="admin-grid">
+
+      <div class="admin-panel-card">
+
+        <h2>Add New Testimonial</h2>
+
+        <form class="admin-form" id="testimonialForm">
+
+          <div class="form-group">
+            <label>Client Name</label>
+            <input
+              type="text"
+              id="clientName"
+              placeholder="Example: Aman Kumar"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Client Role</label>
+            <input
+              type="text"
+              id="clientRole"
+              placeholder="Business Owner"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Review</label>
+            <textarea
+              id="clientReview"
+              rows="5"
+              placeholder="Write client review..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="admin-btn">
+            Add Testimonial
+          </button>
+
+          <p
+            class="login-message"
+            id="testimonialMessage"
+          ></p>
+
+        </form>
+
+      </div>
+
+      <div class="admin-panel-card">
+
+        <h2>Testimonials Preview</h2>
+
+        <div
+          class="admin-list"
+          id="testimonialsList"
+        >
+
+          <div class="admin-item">
+            <div>
+              <h3>Aman Kumar</h3>
+              <p>
+                Professional website design and excellent support.
+              </p>
+              <small>Business Owner</small>
+            </div>
+
+            <button>
+              Delete
+            </button>
+          </div>
+
+          <div class="admin-item">
+            <div>
+              <h3>Rahul Singh</h3>
+              <p>
+                Clean design, fast website and great experience.
+              </p>
+              <small>Coaching Founder</small>
+            </div>
+
+            <button>
+              Delete
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<script src="js/admin.js"></script>
+
+</body>
+</html>
