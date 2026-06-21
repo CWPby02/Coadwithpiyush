@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Admin Dashboard | Code With Piyush Studio</title>
+
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <div class="admin-layout">
+
+    <aside class="sidebar" id="sidebar">
+      <a href="../index.html" class="admin-logo">
+        <span>CWP</span>
+        <div>
+          Code With <strong>Piyush</strong>
+          <small>Admin Panel</small>
+        </div>
+      </a>
+
+      <nav class="admin-menu">
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="blogs.html">Blogs</a>
+        <a href="testimonials.html">Testimonials</a>
+        <a href="settings.html">Settings</a>
+        <a href="../index.html">View Website</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+
+      <header class="admin-topbar">
+        <button class="sidebar-toggle" id="sidebarToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div>
+          <h1>Dashboard</h1>
+          <p>Manage your website content and overview.</p>
+        </div>
+
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+      </header>
+
+      <section class="dashboard-stats">
+        <div class="stat-card">
+          <span>Total Services</span>
+          <strong>6</strong>
+        </div>
+
+        <div class="stat-card">
+          <span>Total Projects</span>
+          <strong>6</strong>
+        </div>
+
+        <div class="stat-card">
+          <span>Total Blogs</span>
+          <strong>6</strong>
+        </div>
+
+        <div class="stat-card">
+          <span>Messages</span>
+          <strong>0</strong>
+        </div>
+      </section>
+
+      <section class="admin-grid">
+
+        <div class="admin-panel-card">
+          <h2>Quick Actions</h2>
+
+          <div class="quick-actions">
+            <a href="services.html">Manage Services</a>
+            <a href="projects.html">Manage Projects</a>
+            <a href="blogs.html">Manage Blogs</a>
+            <a href="testimonials.html">Manage Testimonials</a>
+            <a href="settings.html">Website Settings</a>
+          </div>
+        </div>
+
+        <div class="admin-panel-card">
+          <h2>Website Status</h2>
+
+          <div class="status-list">
+            <div>
+              <span>Homepage</span>
+              <strong>Active</strong>
+            </div>
+
+            <div>
+              <span>Theme System</span>
+              <strong>Ready</strong>
+            </div>
+
+            <div>
+              <span>Admin Panel</span>
+              <strong>In Progress</strong>
+            </div>
+
+            <div>
+              <span>Firebase</span>
+              <strong>Pending</strong>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="admin-panel-card recent-card">
+        <h2>Recent Notes</h2>
+
+        <div class="notes-list">
+          <p>Homepage public pages completed.</p>
+          <p>Admin login page created with demo authentication.</p>
+          <p>Next step: connect Firebase Auth and Firestore database.</p>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
