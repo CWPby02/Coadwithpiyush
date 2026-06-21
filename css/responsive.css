@@ -1,0 +1,202 @@
+@media (max-width: 900px) {
+  .services-grid,
+  .why-grid,
+  .founder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-grid {
+    gap: 35px;
+  }
+
+  .founder-card {
+    max-width: 480px;
+  }
+
+  .founder-photo {
+    height: 360px;
+  }
+}
+
+@media (max-width: 520px) {
+  .services-grid {
+    gap: 16px;
+  }
+
+  .service-card,
+  .why-card,
+  .founder-card {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .score-card strong {
+    font-size: 48px;
+  }
+
+  .founder-photo {
+    height: 300px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .process-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .projects-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-large {
+    grid-row: auto;
+  }
+
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-preview {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 520px) {
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card,
+  .testimonial-card,
+  .process-card {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .preview-row {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-row span {
+    height: 60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .blog-grid,
+  .faq-grid,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 520px) {
+  .cta-actions {
+    flex-direction: column;
+  }
+
+  .cta-box {
+    padding: 48px 20px;
+    border-radius: 24px;
+  }
+
+  .blog-card,
+  .faq-list details {
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .about-hero-grid,
+  .mission-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero {
+    padding-top: 120px;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-card,
+  .mission-card {
+    padding: 24px;
+    border-radius: 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .price-card {
+    padding: 24px;
+    border-radius: 22px;
+  }
+
+  .price-card strong {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 900px) {
+  .featured-blog-card {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-blog-thumb {
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 520px) {
+  .featured-blog-card {
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .featured-blog-thumb {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 900px) {
+  .contact-grid,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .contact-form-card,
+  .info-card {
+    padding: 22px;
+    border-radius: 22px;
+  }
+}
