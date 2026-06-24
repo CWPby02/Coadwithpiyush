@@ -79,42 +79,8 @@
         <p>Choose the service that matches your business, personal brand or project goal.</p>
       </div>
 
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 9h16"/></svg></div>
-          <h3>Business Website</h3>
-          <p>Professional multi-section websites for shops, coaching, services and local businesses.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-6"/></svg></div>
-          <h3>Landing Page</h3>
-          <p>Conversion-focused landing pages for promotions, services, courses and campaigns.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
-          <h3>SEO Setup</h3>
-          <p>Meta tags, sitemap, robots file, semantic structure and Google-ready setup.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M9 9h6v6H9z"/></svg></div>
-          <h3>Portfolio Website</h3>
-          <p>Premium portfolio website for freelancers, students, creators and developers.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M3 7h18"/><path d="M3 12h18"/><path d="M3 17h18"/></svg></div>
-          <h3>Admin Dashboard</h3>
-          <p>Content control system for services, projects, blogs, testimonials and settings.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M5 12h14"/></svg></div>
-          <h3>Maintenance</h3>
-          <p>Small updates, bug fixes, speed improvements and website content changes.</p>
-        </div>
+      <div class="services-grid" id="publicServicesGrid">
+        <p>Loading services...</p>
       </div>
     </div>
   </section>
@@ -271,5 +237,54 @@
 </footer>
 
 <script src="js/theme.js"></script>
+
+<script type="module">
+import { db } from "./firebase/config.js";
+import {
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const publicServicesGrid = document.getElementById("publicServicesGrid");
+
+async function loadPublicServices() {
+  publicServicesGrid.innerHTML = "<p>Loading services...</p>";
+
+  try {
+    const snapshot = await getDocs(collection(db, "services"));
+
+    publicServicesGrid.innerHTML = "";
+
+    if (snapshot.empty) {
+      publicServicesGrid.innerHTML = "<p>No services available yet.</p>";
+      return;
+    }
+
+    snapshot.forEach((docItem) => {
+      const service = docItem.data();
+
+      publicServicesGrid.innerHTML += `
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 5h16v14H4z"/>
+              <path d="M4 9h16"/>
+            </svg>
+          </div>
+          <h3>${service.title}</h3>
+          <p>${service.description}</p>
+        </div>
+      `;
+    });
+
+  } catch (error) {
+    publicServicesGrid.innerHTML = "<p>" + error.message + "</p>";
+    console.log(error);
+  }
+}
+
+loadPublicServices();
+</script>
+
 </body>
 </html>
