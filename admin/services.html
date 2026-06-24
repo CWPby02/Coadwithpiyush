@@ -49,9 +49,11 @@
     <section class="admin-grid">
 
       <div class="admin-panel-card">
-        <h2>Add New Service</h2>
+        <h2 id="formTitle">Add New Service</h2>
 
         <form class="admin-form" id="serviceForm" onsubmit="return false;">
+          <input type="hidden" id="editServiceId">
+
           <div class="form-group">
             <label>Service Title</label>
             <input type="text" id="serviceTitle" placeholder="Example: Website Design" required>
@@ -67,7 +69,9 @@
             <textarea id="serviceDescription" rows="5" placeholder="Write service description..." required></textarea>
           </div>
 
-          <button type="button" class="admin-btn" id="addServiceBtn">Add Service</button>
+          <button type="button" class="admin-btn" id="saveServiceBtn">Add Service</button>
+          <button type="button" class="logout-btn" id="cancelEditBtn" style="display:none; margin-top:10px;">Cancel Edit</button>
+
           <p class="login-message" id="serviceMessage"></p>
         </form>
       </div>
@@ -88,16 +92,28 @@ import { db } from "../firebase/config.js";
 import {
   collection,
   addDoc,
-  getDocs
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const sidebarToggle = document.getElementById("sidebarToggle");
 const sidebar = document.getElementById("sidebar");
 const logoutBtn = document.getElementById("logoutBtn");
 
-const addServiceBtn = document.getElementById("addServiceBtn");
+const formTitle = document.getElementById("formTitle");
+const editServiceId = document.getElementById("editServiceId");
+const serviceTitle = document.getElementById("serviceTitle");
+const serviceCategory = document.getElementById("serviceCategory");
+const serviceDescription = document.getElementById("serviceDescription");
+
+const saveServiceBtn = document.getElementById("saveServiceBtn");
+const cancelEditBtn = document.getElementById("cancelEditBtn");
 const servicesList = document.getElementById("servicesList");
 const serviceMessage = document.getElementById("serviceMessage");
+
+let servicesData = [];
 
 if (sidebarToggle && sidebar) {
   sidebarToggle.addEventListener("click", () => {
@@ -111,11 +127,24 @@ if (logoutBtn) {
   });
 }
 
+function resetForm() {
+  editServiceId.value = "";
+  serviceTitle.value = "";
+  serviceCategory.value = "";
+  serviceDescription.value = "";
+
+  formTitle.textContent = "Add New Service";
+  saveServiceBtn.textContent = "Add Service";
+  cancelEditBtn.style.display = "none";
+}
+
 async function loadServices() {
   servicesList.innerHTML = "Loading...";
 
   try {
     const snapshot = await getDocs(collection(db, "services"));
+    servicesData = [];
+
     servicesList.innerHTML = "";
 
     if (snapshot.empty) {
@@ -124,7 +153,12 @@ async function loadServices() {
     }
 
     snapshot.forEach((docItem) => {
-      const service = docItem.data();
+      const service = {
+        id: docItem.id,
+        ...docItem.data()
+      };
+
+      servicesData.push(service);
 
       servicesList.innerHTML += `
         <div class="admin-item">
@@ -132,6 +166,11 @@ async function loadServices() {
             <h3>${service.title}</h3>
             <p>${service.description}</p>
             <small>${service.category}</small>
+          </div>
+
+          <div style="display:flex; gap:8px; align-items:flex-start;">
+            <button type="button" class="edit-btn" data-id="${service.id}">Edit</button>
+            <button type="button" class="delete-btn" data-id="${service.id}">Delete</button>
           </div>
         </div>
       `;
@@ -143,10 +182,11 @@ async function loadServices() {
   }
 }
 
-addServiceBtn.addEventListener("click", async () => {
-  const title = document.getElementById("serviceTitle").value.trim();
-  const category = document.getElementById("serviceCategory").value.trim();
-  const description = document.getElementById("serviceDescription").value.trim();
+saveServiceBtn.addEventListener("click", async () => {
+  const title = serviceTitle.value.trim();
+  const category = serviceCategory.value.trim();
+  const description = serviceDescription.value.trim();
+  const id = editServiceId.value;
 
   if (!title || !category || !description) {
     serviceMessage.textContent = "Please fill all fields.";
@@ -156,25 +196,81 @@ addServiceBtn.addEventListener("click", async () => {
   serviceMessage.textContent = "Saving...";
 
   try {
-    await addDoc(collection(db, "services"), {
-      title: title,
-      category: category,
-      description: description,
-      createdAt: Date.now()
-    });
+    if (id) {
+      await updateDoc(doc(db, "services", id), {
+        title,
+        category,
+        description,
+        updatedAt: Date.now()
+      });
 
-    serviceMessage.textContent = "Saved to Firebase.";
+      serviceMessage.textContent = "Service updated successfully.";
+    } else {
+      await addDoc(collection(db, "services"), {
+        title,
+        category,
+        description,
+        createdAt: Date.now()
+      });
 
-    document.getElementById("serviceTitle").value = "";
-    document.getElementById("serviceCategory").value = "";
-    document.getElementById("serviceDescription").value = "";
+      serviceMessage.textContent = "Service added successfully.";
+    }
 
+    resetForm();
     loadServices();
 
   } catch (error) {
     serviceMessage.textContent = error.message;
     console.log(error);
   }
+});
+
+servicesList.addEventListener("click", async (e) => {
+  const target = e.target;
+  const id = target.dataset.id;
+
+  if (!id) return;
+
+  if (target.classList.contains("edit-btn")) {
+    const selectedService = servicesData.find((service) => service.id === id);
+
+    if (!selectedService) return;
+
+    editServiceId.value = selectedService.id;
+    serviceTitle.value = selectedService.title || "";
+    serviceCategory.value = selectedService.category || "";
+    serviceDescription.value = selectedService.description || "";
+
+    formTitle.textContent = "Edit Service";
+    saveServiceBtn.textContent = "Update Service";
+    cancelEditBtn.style.display = "inline-flex";
+    serviceMessage.textContent = "Editing mode enabled.";
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  if (target.classList.contains("delete-btn")) {
+    const confirmDelete = confirm("Are you sure you want to delete this service?");
+
+    if (!confirmDelete) return;
+
+    try {
+      await deleteDoc(doc(db, "services", id));
+      serviceMessage.textContent = "Service deleted successfully.";
+      loadServices();
+    } catch (error) {
+      serviceMessage.textContent = error.message;
+      console.log(error);
+    }
+  }
+});
+
+cancelEditBtn.addEventListener("click", () => {
+  resetForm();
+  serviceMessage.textContent = "Edit cancelled.";
 });
 
 loadServices();
