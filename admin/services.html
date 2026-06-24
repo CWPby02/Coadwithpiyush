@@ -34,7 +34,7 @@
   <main class="admin-main">
 
     <header class="admin-topbar">
-      <button class="sidebar-toggle" id="sidebarToggle">
+      <button class="sidebar-toggle" id="sidebarToggle" type="button">
         <span></span><span></span><span></span>
       </button>
 
@@ -43,7 +43,7 @@
         <p>Add, edit and delete website services.</p>
       </div>
 
-      <button class="logout-btn" id="logoutBtn">Logout</button>
+      <button class="logout-btn" id="logoutBtn" type="button">Logout</button>
     </header>
 
     <section class="admin-grid">
@@ -51,7 +51,7 @@
       <div class="admin-panel-card">
         <h2>Add New Service</h2>
 
-        <form class="admin-form" id="serviceForm">
+        <form class="admin-form" id="serviceForm" onsubmit="return false;">
           <div class="form-group">
             <label>Service Title</label>
             <input type="text" id="serviceTitle" placeholder="Example: Website Design" required>
@@ -67,33 +67,14 @@
             <textarea id="serviceDescription" rows="5" placeholder="Write service description..." required></textarea>
           </div>
 
-          <button type="submit" class="admin-btn">Add Service</button>
+          <button type="button" class="admin-btn" id="addServiceBtn">Add Service</button>
           <p class="login-message" id="serviceMessage"></p>
         </form>
       </div>
 
       <div class="admin-panel-card">
         <h2>Services Preview</h2>
-
-        <div class="admin-list" id="servicesList">
-          <div class="admin-item">
-            <div>
-              <h3>Website Design</h3>
-              <p>Modern responsive website layouts for businesses.</p>
-              <small>Web Design</small>
-            </div>
-            <button>Delete</button>
-          </div>
-
-          <div class="admin-item">
-            <div>
-              <h3>Landing Page</h3>
-              <p>High-converting landing pages for services.</p>
-              <small>Marketing</small>
-            </div>
-            <button>Delete</button>
-          </div>
-        </div>
+        <div class="admin-list" id="servicesList">Loading...</div>
       </div>
 
     </section>
@@ -102,6 +83,102 @@
 
 </div>
 
-<script src="js/admin.js"></script>
+<script type="module">
+import { db } from "../firebase/config.js";
+import {
+  collection,
+  addDoc,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const sidebarToggle = document.getElementById("sidebarToggle");
+const sidebar = document.getElementById("sidebar");
+const logoutBtn = document.getElementById("logoutBtn");
+
+const addServiceBtn = document.getElementById("addServiceBtn");
+const servicesList = document.getElementById("servicesList");
+const serviceMessage = document.getElementById("serviceMessage");
+
+if (sidebarToggle && sidebar) {
+  sidebarToggle.addEventListener("click", () => {
+    sidebar.classList.toggle("show");
+  });
+}
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", () => {
+    window.location.href = "login.html";
+  });
+}
+
+async function loadServices() {
+  servicesList.innerHTML = "Loading...";
+
+  try {
+    const snapshot = await getDocs(collection(db, "services"));
+    servicesList.innerHTML = "";
+
+    if (snapshot.empty) {
+      servicesList.innerHTML = "<p>No services added yet.</p>";
+      return;
+    }
+
+    snapshot.forEach((docItem) => {
+      const service = docItem.data();
+
+      servicesList.innerHTML += `
+        <div class="admin-item">
+          <div>
+            <h3>${service.title}</h3>
+            <p>${service.description}</p>
+            <small>${service.category}</small>
+          </div>
+        </div>
+      `;
+    });
+
+  } catch (error) {
+    servicesList.innerHTML = error.message;
+    console.log(error);
+  }
+}
+
+addServiceBtn.addEventListener("click", async () => {
+  const title = document.getElementById("serviceTitle").value.trim();
+  const category = document.getElementById("serviceCategory").value.trim();
+  const description = document.getElementById("serviceDescription").value.trim();
+
+  if (!title || !category || !description) {
+    serviceMessage.textContent = "Please fill all fields.";
+    return;
+  }
+
+  serviceMessage.textContent = "Saving...";
+
+  try {
+    await addDoc(collection(db, "services"), {
+      title: title,
+      category: category,
+      description: description,
+      createdAt: Date.now()
+    });
+
+    serviceMessage.textContent = "Saved to Firebase.";
+
+    document.getElementById("serviceTitle").value = "";
+    document.getElementById("serviceCategory").value = "";
+    document.getElementById("serviceDescription").value = "";
+
+    loadServices();
+
+  } catch (error) {
+    serviceMessage.textContent = error.message;
+    console.log(error);
+  }
+});
+
+loadServices();
+</script>
+
 </body>
 </html>
